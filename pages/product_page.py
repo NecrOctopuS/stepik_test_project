@@ -10,8 +10,9 @@ class ProductPage(BasePage):
 
     def should_be_add_message(self):
         message = self.browser.find_element(*ProductPageLocators.ADD_MESSAGE)
-        product = self.browser.find_element(*ProductPageLocators.ADD_MESSAGE)
-        assert product.text in message.text and "has been added to your basket." in message.text, \
+        product_in_message = self.browser.find_element(*ProductPageLocators.PRODUCT_IN_ADD_MESSAGE)
+        product = self.browser.find_element(*ProductPageLocators.PRODUCT)
+        assert product.text == product_in_message.text and "has been added to your basket." in message.text, \
             f"Add message is not present or incorrect. Message text = {message.text}, product text = {product.text}"
 
     def should_be_cart_message_with_correct_price(self):
